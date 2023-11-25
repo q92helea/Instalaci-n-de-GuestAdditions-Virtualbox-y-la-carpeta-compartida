@@ -14,17 +14,17 @@ sudo apt upgrade -y
 # Instalar paquetes necesarios para la instalación de Guest Additions
 sudo apt install -y gcc make perl build-essential dkms linux-headers-$(uname -r)
 
+# Creación de la carpeta "compartida"
+sudo mkdir /mnt/compartida
+
 # Montar la imagen de Guest Additions
-sudo mount /dev/sr0 /media/cdrom
+sudo mount /dev/sr0 /mnt/compartida
 
 # Ejecutar el script de instalación de Guest Additions
-sudo sh /media/cdrom/VBoxLinuxAdditions.run
+sudo sh /mnt/compartida/VBoxLinuxAdditions.run
 
 # Desmontar la imagen de Guest Additions
 sudo umount /dev/sr0
-
-# Creación de la carpeta "compartida"
-sudo mkdir /mnt/compartida
 
 # Configurar carpeta compartida y añadir al archivo /etc/fstab
 echo "Compartida /mnt/compartida vboxsf defaults 0 0" | sudo tee -a /etc/fstab
